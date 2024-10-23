@@ -40,10 +40,7 @@ def main():
 
         try:
             result = calculator(user_command, user_num1, user_num2)
-            if result is not None:
-                print(f"The result: {result}\n")
-            else:
-                print("Error: Invalid operation.\n")
+            print(f"The result: {result}\n")
         except ZeroDivisionError as e:
             print(f"{e}\n")  # Handle division by zero error
 
