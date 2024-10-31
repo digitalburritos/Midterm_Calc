@@ -1,5 +1,6 @@
 Calculator prototype.
 Using Read-Evaluate-Print-Loop to continue running the application until user exits.
+User can access menu commands and exit application.
 User can add, subtract, multiply, and divide any decimal values.
 Program recognizes that user cannot divide by zero.
 
