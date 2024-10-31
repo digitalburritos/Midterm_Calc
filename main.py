@@ -1,48 +1,64 @@
-def calculator(operation, num1, num2):
-    """Perform basic arithmetic operations."""
-    if operation == 'add':
-        return num1 + num2
-    elif operation == 'subtract':
-        return num1 - num2
-    elif operation == 'multiply':
-        return num1 * num2
-    elif operation == 'divide':
-        if num2 == 0:
-            raise ZeroDivisionError('Cannot divide by zero')
-        return num1 / num2
-    return None  # Return None for invalid operations
+import sys
+import logging
+import logging.config
+from calculator.commands import AddCommand, SubtractCommand, MultiplyCommand, DivideCommand
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Configure logging
+logging.config.fileConfig('logging.conf')
+logger = logging.getLogger('root')
 
 def main():
-    """Main function to run the calculator app."""
-    print("Welcome to the Calculator App!")
-    
-    valid_commands = {'add', 'subtract', 'multiply', 'divide', 'exit'}
+    commands = {
+        "add": AddCommand(),
+        "subtract": SubtractCommand(),
+        "multiply": MultiplyCommand(),
+        "divide": DivideCommand(),
+    }
 
-    # REPL to keep running the app until user quits
+    logger.info("Calculator started.")
+
+    """Main REPL loop for the interactive calculator."""
     while True:
-        print("Commands ('add', 'subtract', 'multiply', 'divide', 'exit'): ")
-        user_command = input("Enter command: ").strip().lower()
 
-        if user_command == 'exit':
-            print("Goodbye")
-            break
-
-        if user_command not in valid_commands:
-            print("Invalid command. Please enter a valid command.\n")
-            continue
-
+        print("*\nWelcome to the Calculator!")
+        print("Commands: add <num1> <num2>, subtract <num1> <num2>, multiply <num1> <num2>, divide <num1> <num2>")
+         
+        """EAFP to try the input's execution to raise errors if needed"""
         try:
-            user_num1 = float(input("Enter first number: "))
-            user_num2 = float(input("Enter second number: "))
+           
+            user_input = input("Enter command (or 'exit' to quit): ")
+            if user_input.lower() == "exit":
+                logger.info("Calculator exited.")
+                break
+
+            parts = user_input.split()
+            command_name = parts[0]
+            args = list(map(float, parts[1:]))
+
+            """LBYL to check if the command is valid"""
+            if command_name in commands:
+                result = commands[command_name].execute(*args)
+                print(f"Result: {result}")
+                logger.info(f"Executed command: {command_name} with args: {args}, result: {result}")
+            else:
+                print("Unknown command.")
+                logger.warning(f"Unknown command: {command_name}")
         except ValueError:
-            print("Invalid input. Please enter numeric values.\n")
-            continue
-
-        try:
-            result = calculator(user_command, user_num1, user_num2)
-            print(f"The result: {result}\n")
+            print("Invalid input. Please enter numbers.")
+            logger.error("ValueError: Invalid input.")
         except ZeroDivisionError as e:
-            print(f"{e}\n")  # Handle division by zero error
+            print(e)
+            logger.error("ZeroDivisionError: Division by zero attempted.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            logger.error(f"Unexpected error: {e}")
+        
+        print()
 
 if __name__ == "__main__":
     main()
