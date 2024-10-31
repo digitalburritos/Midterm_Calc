@@ -14,7 +14,7 @@ class Command:
 class MenuCommand(Command):
     """Command to display commands."""
     def execute(self):
-        return "Commands: add, subtract, multiply, divide, exit"
+        return "Commands: add, subtract, multiply, divide, menu, exit"
 
 class ExitCommand(Command):
     """Command to exit the calculator."""
