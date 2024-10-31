@@ -11,6 +11,16 @@ class Command:
         """
         raise NotImplementedError
 
+class MenuCommand(Command):
+    """Command to display commands."""
+    def execute(self):
+        return "Commands: add, subtract, multiply, divide, exit"
+
+class ExitCommand(Command):
+    """Command to exit the calculator."""
+    def execute(self):
+        return "Exiting the calculator..."
+
 class AddCommand(Command):
     """Command to add two numbers."""
     def execute(self, a, b):

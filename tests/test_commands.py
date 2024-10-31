@@ -1,6 +1,6 @@
 import pytest
 from calculator.calculation import Calculator
-from calculator.commands import Command, AddCommand, SubtractCommand, MultiplyCommand, DivideCommand
+from calculator.commands import Command, AddCommand, SubtractCommand, MultiplyCommand, DivideCommand, MenuCommand, ExitCommand
 
 # Create a fixture for the calculator
 @pytest.fixture
@@ -35,3 +35,14 @@ def test_divide_command(calculator):
     # Test division by zero
     with pytest.raises(ZeroDivisionError):
         divide_command.execute(10, 0)
+
+def test_menu_command():
+    command = MenuCommand()
+    expected_output = "Commands: add, subtract, multiply, divide, menu, exit"
+    assert command.execute() == expected_output
+
+def test_exit_command():
+    command = ExitCommand()
+    # Assuming ExitCommand doesn't return anything
+    result = command.execute()
+    assert result == "Exiting the calculator..."
