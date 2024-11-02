@@ -8,8 +8,8 @@ This Mid Term Calculator Project is a command-line calculator that uses a Read-E
 - Setup Instructions
 - Usage Examples
 - Architectural Decisions
-  -- Design Patterns
-  -- Logging Strategy
+- Design Patterns
+- Logging Strategy
 
 ## Features
 - Arithmetic Operations: Perform addition, subtraction, multiplication, and division on two numeric values.
