@@ -1,4 +1,5 @@
 # Mid Term Calculator Project
+Video Demostration: https://www.flexclip.com/share/72421159c5b1b659847994f509f6d5d0bd7e749.html
 
 ## Overview
 This Mid Term Calculator Project is a command-line calculator that uses a Read-Evaluate-Print Loop (REPL) for user interaction. It supports basic arithmetic operations and manages calculation history efficiently.
@@ -54,21 +55,21 @@ python main.py
 ## Architectural Decisions
 
 ### Design Patterns and Concepts
-- Facade Pattern: Provides a simplified interface for complex data operations involving Pandas. For implementation details, see [Facade Pattern in Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/history.py#L7-L29).
+- Facade Pattern: Provides a simplified interface for complex data operations involving Pandas. For implementation details, see [Facade Pattern in Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/history.py#L7-L27).
 
 - Command Pattern: Encapsulates each command (add, subtract, etc.) as an object for easier management and extension. See [Command Pattern in Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L10-L21).
 
-- Factory Method: Used for creating command instances dynamically. Details can be found in [Factory Method Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/commands.py#L4-L65).
+- Factory Method: Used for creating command instances dynamically. Details can be found in [Factory Method Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/commands.py#L5-L84).
 
-- Singleton Pattern: Ensures the logger is instantiated only once. See [Singleton Pattern Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L10-L11).
+- Singleton Pattern: Ensures the history manager is instantiated only once. See [Singleton Pattern Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L10-L11).
 
-- Strategy Pattern: Allows swapping different calculation strategies with the use of plugins and class instantiation. Refer to [Strategy Pattern Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/commands.py#L23-L26).
+- Strategy Pattern: Allows swapping different calculation strategies with the use of plugins and class instantiation. Refer to [Strategy Pattern Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/commands.py#L22-L25).
 
-- **REPL (Read-Eval-Print Loop)**: Facilitates direct interaction with the calculator, allowing users to enter commands and receive immediate feedback. Refer to [REPL Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L25-L58).
+- **REPL (Read-Eval-Print Loop)**: Facilitates direct interaction with the calculator, allowing users to enter commands and receive immediate feedback. Refer to [REPL Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L26-L59).
 
-- **LBYL (Look Before You Leap)**: Checks user input for validity before executing commands to prevent errors. This ensures that only valid commands are processed. Refer to [LBYL Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L28-L33).
+- **LBYL (Look Before You Leap)**: Checks user input for validity before executing commands to prevent errors. This ensures that only valid commands are processed. Refer to [LBYL Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L29-L34).
 
-- **EAFP (Easier to Ask for Forgiveness than Permission)**: Attempts calculations and handles exceptions as they arise, allowing for cleaner and more efficient code. This approach is particularly useful for managing invalid inputs and division errors. Refer to [EAFP Code](https://github.com/digitalburritos/Midterm_Calc/blob/main//main.py#L44-L53).
+- **EAFP (Easier to Ask for Forgiveness than Permission)**: Attempts calculations and handles exceptions as they arise, allowing for cleaner and more efficient code. This approach is particularly useful for managing invalid inputs and division errors. Refer to [EAFP Code](https://github.com/digitalburritos/Midterm_Calc/blob/main//main.py#L45-L54).
 
 - **Environment Variables**: Utilizes environment variables to manage sensitive information and configuration settings, such as file paths and database credentials. This is achieved through a `.env` file and the `dotenv` library. Refer to [Environment Variables Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/calculator/calculation.py#L4-L6).
 
@@ -78,6 +79,6 @@ The logging system captures user actions and errors at various severity levels (
 
 - Configuration: Configured through `logging.conf` for flexible management. See [Logging Configuration Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/logging.conf#L1-L28).
 
-- Usage in Code: Logger methods record events such as command execution and errors. Example usage can be seen in [Logging Usage Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L51-L53).
+- Usage in Code: Logger methods record events such as command execution and errors. Example usage can be seen in [Logging Usage Code](https://github.com/digitalburritos/Midterm_Calc/blob/main/main.py#L52-L54).
 
 

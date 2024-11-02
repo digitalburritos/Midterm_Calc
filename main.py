@@ -20,11 +20,12 @@ def main():
         "exit": ExitCommand(),
     }
 
-
+    print("*Welcome to the Calculator App*\n")
     print("Type 'menu' for commands or 'exit' to exit the program.")
 
     while True:
         query = input("Enter command: ").strip().lower()
+        print()
         
         if query == "exit":
             print(commands["exit"].execute())
