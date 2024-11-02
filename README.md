@@ -1,13 +1,13 @@
-Calculator prototype.
+Mid Term Calculator Project
+
 Using Read-Evaluate-Print-Loop to continue running the application until user exits.
-User can access menu commands and exit application.
-User can add, subtract, multiply, and divide any decimal values.
-Program recognizes that user cannot divide by zero.
+User can access menu commands to access the different operations, and they can also exit  the application. The plugins can be modified to add more functionality to the calculator.
+User can add, subtract, multiply, and divide any 2 numeric values.
 
-Basic tests created for various inputs.
+Workflows added for project to utilize GitHub actions. Environment variable is used in .env file locally for the development environment and to define the database username as root. Importing the dotenv in the main.py file is critical for managing sensitive information and configuration settings. This is generally use if you have an api key and secret key too, but for the purposes of this project those are not needed.
 
-Workflows added for project. Environment variable added.
+Logging system is using the logging.conf to establish the configuration for monitoring system actions like user inputs, or results. In main.py file, logger.info is used for displaying the actions of the program and the user. The logger.warning and logger.error both display a warning message for monitoring the user's input.
 
-Look Before You Leap (LBYL) is used to check if the command the user inputted is valid and in the dictionary in order to execute the block of code.
+Look Before You Leap (LBYL) is used to first check if the command the user inputted is valid and in the dictionary of commands then proceeds to evaluation the expression.
 
-Easier to Ask for Forgiveness than Permission (EAFP) is used to attempt the calculation and raise errors to catch exceptions to invalid number inputs and division by zero error.
+Easier to Ask for Forgiveness than Permission (EAFP) is used to attempt the calculation first and  then raise errors to catch exceptions of invalid number inputs and division by zero error.

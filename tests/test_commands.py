@@ -1,6 +1,6 @@
 import pytest
 from calculator.calculation import Calculator
-from calculator.commands import Command, AddCommand, SubtractCommand, MultiplyCommand, DivideCommand, MenuCommand, ExitCommand
+from calculator.commands import Command, AddCommand, SubtractCommand, MultiplyCommand, DivideCommand, MenuCommand, HistoryCommand, ExitCommand
 
 # Create a fixture for the calculator
 @pytest.fixture
@@ -38,7 +38,17 @@ def test_divide_command(calculator):
 
 def test_menu_command():
     command = MenuCommand()
-    expected_output = "Commands: add, subtract, multiply, divide, menu, exit"
+    expected_output = (
+        "Available commands:\n"
+        "- add: Add two numbers (ex: add 1 2)\n"
+        "- subtract: Subtract second number from first (ex: subtract 5 3)\n"
+        "- multiply: Multiply two numbers (ex: multiply 2 3)\n"
+        "- divide: Divide first number by second (ex: divide 6 2)\n"
+        "- load history: Load calculation history from file\n"
+        "- save history: Save current history to file\n"
+        "- clear history: Clear the calculation history\n"
+        "- exit: Exit the program\n"
+    )
     assert command.execute() == expected_output
 
 def test_exit_command():
