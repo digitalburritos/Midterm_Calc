@@ -8,6 +8,8 @@ Workflows added for project to utilize GitHub actions. Environment variable is u
 
 Logging system is using the logging.conf to establish the configuration for monitoring system actions like user inputs, or results. In main.py file, logger.info is used for displaying the actions of the program and the user. The logger.warning and logger.error both display a warning message for monitoring the user's input.
 
+Pandas implemented for comprehensive data reading and writing to CSV files using DataFrames. 
+
 Look Before You Leap (LBYL) is used to first check if the command the user inputted is valid and in the dictionary of commands then proceeds to evaluation the expression.
 
 Easier to Ask for Forgiveness than Permission (EAFP) is used to attempt the calculation first and  then raise errors to catch exceptions of invalid number inputs and division by zero error.
