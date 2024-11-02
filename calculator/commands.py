@@ -1,35 +1,20 @@
-from calculator.calculation import Calculator
 import pandas as pd
 import os
-
-calculator = Calculator()
-
-HISTORY_FILE = "history.csv"
+import logging
+from calculator.calculation import Calculator
 
 class Command:
-    """Base command class for calculator commands."""
+    """Base command class for calculator commands (Command Pattern)."""
     def execute(self, *args):
-        """Executes the command with given arguments.
-        
-        This method should be overridden in subclasses.
-        """
+        """Executes the command with given arguments."""
         raise NotImplementedError
 
 class MenuCommand(Command):
     """Command to display available commands."""
     def execute(self):
-        return (
-            "Available commands:\n"
-            "- add: Add two numbers (ex: add 1 2)\n"
-            "- subtract: Subtract second number from first (ex: subtract 5 3)\n"
-            "- multiply: Multiply two numbers (ex: multiply 2 3)\n"
-            "- divide: Divide first number by second (ex: divide 6 2)\n"
-            "- load history: Load calculation history from file\n"
-            "- save history: Save current history to file\n"
-            "- clear history: Clear the calculation history\n"
-            "- exit: Exit the program\n"
-        )
-    
+        return ("Commands: add, subtract, multiply, divide, load, save, clear, exit\n"
+                "For operations, please provide two numeric arguments (ex: add 1 2)")
+
 class ExitCommand(Command):
     """Command to exit the calculator."""
     def execute(self):
@@ -38,42 +23,43 @@ class ExitCommand(Command):
 class AddCommand(Command):
     """Command to add two numbers."""
     def execute(self, a, b):
-        return calculator.add(a, b)
+        return Calculator().add(a, b)
 
 class SubtractCommand(Command):
     """Command to subtract one number from another."""
     def execute(self, a, b):
-        return calculator.subtract(a, b)
+        return Calculator().subtract(a, b)
 
 class MultiplyCommand(Command):
     """Command to multiply two numbers."""
     def execute(self, a, b):
-        return calculator.multiply(a, b)
+        return Calculator().multiply(a, b)
 
 class DivideCommand(Command):
     """Command to divide one number by another."""
     def execute(self, a, b):
-        return calculator.divide(a, b)
+        return Calculator().divide(a, b)
 
-class HistoryCommand(Command):
-    """Command to manage calculation history."""
-    def __init__(self):
-        self.history_df = self.load_history()
+class LoadHistoryCommand(Command):
+    """Command to load calculation history."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
 
-    def load_history(self):
-        """Load history from a CSV file into a DataFrame."""
-        if os.path.exists(HISTORY_FILE):
-            return pd.read_csv(HISTORY_FILE)
-        return pd.DataFrame(columns=["operation", "values", "result"])
+    def execute(self):
+        return self.history_manager.load_history()
 
-    def save_history(self):
-        """Save the history DataFrame to a CSV file."""
-        self.history_df.to_csv(HISTORY_FILE, index=False)
+class SaveHistoryCommand(Command):
+    """Command to save calculation history."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
 
-    def clear_history(self):
-        """Clear the history CSV file."""
-        if os.path.exists(HISTORY_FILE):
-            os.remove(HISTORY_FILE)
-            self.history_df = pd.DataFrame(columns=["operation", "values", "result"])
-            return "History cleared."
-        return "No history to clear."
+    def execute(self):
+        return self.history_manager.save_history()
+
+class ClearHistoryCommand(Command):
+    """Command to clear the calculation history."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
+
+    def execute(self):
+        return self.history_manager.clear_history()
