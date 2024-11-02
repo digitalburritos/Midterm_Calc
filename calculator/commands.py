@@ -1,6 +1,5 @@
 import pandas as pd
 import os
-import logging
 from calculator.calculation import Calculator
 
 class Command:
@@ -22,23 +21,43 @@ class ExitCommand(Command):
 
 class AddCommand(Command):
     """Command to add two numbers."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
+
     def execute(self, a, b):
-        return Calculator().add(a, b)
+        result = Calculator().add(a, b)
+        self.history_manager.add_history("add", f"{a}, {b}", result)  # Add to history
+        return result
 
 class SubtractCommand(Command):
     """Command to subtract one number from another."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
+
     def execute(self, a, b):
-        return Calculator().subtract(a, b)
+        result = Calculator().subtract(a, b)
+        self.history_manager.add_history("subtract", f"{a}, {b}", result)  # Add to history
+        return result
 
 class MultiplyCommand(Command):
     """Command to multiply two numbers."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
+
     def execute(self, a, b):
-        return Calculator().multiply(a, b)
+        result = Calculator().multiply(a, b)
+        self.history_manager.add_history("multiply", f"{a}, {b}", result)  # Add to history
+        return result
 
 class DivideCommand(Command):
     """Command to divide one number by another."""
+    def __init__(self, history_manager):
+        self.history_manager = history_manager
+
     def execute(self, a, b):
-        return Calculator().divide(a, b)
+        result = Calculator().divide(a, b)
+        self.history_manager.add_history("divide", f"{a}, {b}", result)  # Add to history
+        return result
 
 class LoadHistoryCommand(Command):
     """Command to load calculation history."""
@@ -63,3 +82,4 @@ class ClearHistoryCommand(Command):
 
     def execute(self):
         return self.history_manager.clear_history()
+

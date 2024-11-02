@@ -9,16 +9,17 @@ def main():
     """Main entry point for the REPL (Read-Eval-Print Loop)."""
     history_manager = HistoryManager()  # Create history manager
     commands = {
-        "add": AddCommand(),
-        "subtract": SubtractCommand(),
-        "multiply": MultiplyCommand(),
-        "divide": DivideCommand(),
+        "add": AddCommand(history_manager),
+        "subtract": SubtractCommand(history_manager),
+        "multiply": MultiplyCommand(history_manager),
+        "divide": DivideCommand(history_manager),
         "load": LoadHistoryCommand(history_manager),
         "save": SaveHistoryCommand(history_manager),
         "clear": ClearHistoryCommand(history_manager),
         "menu": MenuCommand(),
         "exit": ExitCommand(),
     }
+
 
     print("Type 'menu' for commands or 'exit' to exit the program.")
 
