@@ -1,5 +1,4 @@
 # Mid Term Calculator Project
-Video Demostration: https://www.flexclip.com/share/72421159c5b1b659847994f509f6d5d0bd7e749.html
 
 ## Overview
 This Mid Term Calculator Project is a command-line calculator that uses a Read-Evaluate-Print Loop (REPL) for user interaction. It supports basic arithmetic operations and manages calculation history efficiently.
